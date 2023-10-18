@@ -108,7 +108,7 @@ def fetch_data(basic_parameters):
     print(f"found {data['countOfAllResults']} listings")
     listings = []
     for idx, card in enumerate(data["announcements"]):
-        print(f"+ {idx+1}/{total_count} {card['location']}")
+        print(f"+ {idx+1}/{total_count}")
 
         # id for detailed search and listing specific url
         friendlyId = card["friendlyId"]
@@ -129,13 +129,12 @@ def fetch_data(basic_parameters):
         url = TARGET_URL + friendlyId
 
         listings.append([x, y, address, price, url])
-        
+
     return listings
 
 
 def _get_coords(friendlyId: str):
     """gets coordinates for a listing, returns a tuple. returns a tuple of (0,0) on fetch error"""
-    # time.sleep(50/1000)
     params = {
         "friendlyId": friendlyId,
     }
