@@ -1,7 +1,5 @@
 # CasaEx - Home Explorer
-### A utility for scouring real estate websites in search of property listings and converting them into a format compatible with QGIS.
-
-### Currently only has some very basic search filtering and only has two modules (real estate websites) by default
+### A utility for scouring real estate websites in search of property listings and converting them into a format compatible with QGIS. Currently only has some very basic search filtering and only has two modules (real estate websites) by default
 
 ## Requirements
 - Python 3+
