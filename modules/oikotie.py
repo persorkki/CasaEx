@@ -72,7 +72,10 @@ def fetch_data(basic_parameters):
     listings = []
     if response.status_code == 200:
         data = response.json()
+        total_count = data["found"]
+        print (f"-- Oikotie --")
         for idx, card in enumerate(data["cards"]):
+            print(f"+ {idx+1}/{total_count}")
             address = card["location"]["address"]
             x = card["location"]["longitude"]
             y = card["location"]["latitude"]

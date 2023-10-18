@@ -5,7 +5,6 @@ from modules import etuovi
 
 import csv
 
-
 def save_csv(listings):
     print ("saving")
     with open("listings.csv", "w", encoding="utf-8") as f:
@@ -77,7 +76,6 @@ def check_duplicate_address(A, B):
     from difflib import SequenceMatcher
 
     result = SequenceMatcher(None, A, B).ratio()
-
     if result >= 0.8:
         print (f"dupe: {A} and {B}")
         return True

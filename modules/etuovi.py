@@ -105,8 +105,8 @@ def fetch_data(basic_parameters):
 
     data = response.json()
     total_count = data["countOfAllResults"]
-    print(f"found {data['countOfAllResults']} listings")
     listings = []
+    print (f"-- Etuovi --")
     for idx, card in enumerate(data["announcements"]):
         print(f"+ {idx+1}/{total_count}")
 
