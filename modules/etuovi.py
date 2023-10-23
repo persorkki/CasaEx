@@ -1,6 +1,6 @@
+"""This module fetches house listings from etuovi.com"""
 import requests
-import time
-
+from modules.headers import base_headers
 DETAIL_URL = "https://www.etuovi.com/api/v2/announcement/details"
 TARGET_URL = "https://www.etuovi.com/kohde/"
 URL = "https://www.etuovi.com/api/v2/announcements/search/listpage"
@@ -74,8 +74,6 @@ def _transform_parameters(basic_parameters):
 
 
 def _get_headers():
-    from modules.headers import base_headers
-
     # get base headers
     headers = base_headers
 
@@ -107,7 +105,8 @@ def fetch_data(basic_parameters):
     data = response.json()
     total_count = data["countOfAllResults"]
     listings = []
-    print(f"-- Etuovi --")
+    #TODO: this could maybe import a utility class that handles printing the name and the iteration
+    print("--- [etuovi.com] ---")
     for idx, card in enumerate(data["announcements"]):
         print(f"+ {idx+1}/{total_count}")
 

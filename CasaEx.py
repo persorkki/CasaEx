@@ -38,12 +38,15 @@ def CasaEx():
     # add/remove modules here:
     modules = [
         oikotie,
-        etuovi
+        #etuovi
     ]
 
     sources = []
+
+    # we only use modules that actually have fetch_data function
     for module in modules:
-        sources.append(module.fetch_data) if hasattr(module, "fetch_data") else None
+        if hasattr(module, "fetch_data"): 
+            sources.append(module.fetch_data)
 
     for src in sources:
         listing_data = src(basic_parameters)
@@ -54,8 +57,6 @@ def CasaEx():
 
 def check_duplicate_address(A, B):
     """compares two values and returns if their difference matches the tolerance"""
-    from difflib import SequenceMatcher
-
     result = SequenceMatcher(None, A, B).ratio()
     if result >= 0.8:
         print(f"dupe: {A} and {B}")

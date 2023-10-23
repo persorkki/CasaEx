@@ -1,10 +1,10 @@
+"""This module fetches house listings from oikotie.fi"""
 import requests
 from bs4 import BeautifulSoup
+from modules.headers import base_headers
 
 
 def _get_headers():
-    from modules.headers import base_headers
-
     # get base headers
     headers = base_headers
     # add OTA tokens to headers
@@ -19,7 +19,7 @@ def _get_tokens(headers: dict[str, str]) -> dict[str, str]:
 
     token_base_url = "https://asunnot.oikotie.fi"
 
-    res = requests.get(token_base_url, headers=headers)
+    res = requests.get(token_base_url, headers=headers, timeout=10)
     soup = BeautifulSoup(res.text, "html.parser")
 
     meta_token = soup.find("meta", {"name": "api-token"})
@@ -70,12 +70,12 @@ def fetch_data(basic_parameters):
 
     base_url = "https://asunnot.oikotie.fi/api/search"
 
-    response = requests.get(base_url, headers=headers, params=params)
+    response = requests.get(base_url, headers=headers, params=params, timeout=10)
     listings = []
     if response.status_code == 200:
         data = response.json()
         total_count = data["found"]
-        print(f"-- Oikotie --")
+        print("--- [oikotie.fi] ---")
         for idx, card in enumerate(data["cards"]):
             print(f"+ {idx+1}/{total_count}")
             address = card["location"]["address"]
