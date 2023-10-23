@@ -96,7 +96,7 @@ def fetch_data(basic_parameters):
     headers = _get_headers()
     params = _transform_parameters(basic_parameters)
 
-    response = requests.post(URL, json=params, headers=headers)
+    response = requests.post(URL, json=params, headers=headers, timeout=10)
 
     if not response.ok:
         print("Error - could not add listings from Etuovi")
@@ -138,7 +138,7 @@ def _get_coords(friendlyId: str):
     params = {
         "friendlyId": friendlyId,
     }
-    res = requests.get(DETAIL_URL, params=params)
+    res = requests.get(DETAIL_URL, params=params, timeout=10)
     if res.ok:
         data = res.json()
         x = data["property"]["geoCode"]["longitude"]

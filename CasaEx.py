@@ -38,7 +38,7 @@ def CasaEx():
     # add/remove modules here:
     modules = [
         oikotie,
-        #etuovi
+        etuovi
     ]
 
     sources = []
