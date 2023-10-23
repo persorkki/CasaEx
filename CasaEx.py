@@ -64,6 +64,7 @@ def check_duplicate_address(A, B):
 
 
 def checker(data, new_data):
+    """compares two data sources and finds duplicates"""
     not_dupe = []
     if not data:
         not_dupe.extend(new_data)
