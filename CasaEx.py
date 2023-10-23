@@ -7,7 +7,7 @@ import csv
 
 def save_csv(listings):
     print ("saving")
-    with open("listings.csv", "w", encoding="utf-8") as f:
+    with open("listings.csv", "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         fieldnames = ["X", "Y", "fid", "name", "hinta", "url"]
         writer.writerow(fieldnames)
