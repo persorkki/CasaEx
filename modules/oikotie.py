@@ -39,14 +39,15 @@ def _get_tokens(headers: dict[str, str]) -> dict[str, str]:
         }  # type: ignore
     return {}
 
+
 def _transform_parameters(basic_parameters):
     maximum_price = basic_parameters["maximum_price"]
     rooms = basic_parameters["rooms"]
     minimum_area = basic_parameters["minimum_area"]
-    keywords=basic_parameters["keywords"]
+    keywords = basic_parameters["keywords"]
     sauna = []
     if basic_parameters["sauna"]:
-        sauna.append(2) 
+        sauna.append(2)
 
     params = {
         "buildingType[]": [4, 8, 32, 128],
@@ -62,24 +63,25 @@ def _transform_parameters(basic_parameters):
     }
     return params
 
+
 def fetch_data(basic_parameters):
     headers = _get_headers()
     params = _transform_parameters(basic_parameters)
 
     base_url = "https://asunnot.oikotie.fi/api/search"
-    
+
     response = requests.get(base_url, headers=headers, params=params)
     listings = []
     if response.status_code == 200:
         data = response.json()
         total_count = data["found"]
-        print (f"-- Oikotie --")
+        print(f"-- Oikotie --")
         for idx, card in enumerate(data["cards"]):
             print(f"+ {idx+1}/{total_count}")
             address = card["location"]["address"]
             x = card["location"]["longitude"]
             y = card["location"]["latitude"]
-            price = card["data"]["price"].replace(u'\xa0', '').replace("€", " €")
+            price = card["data"]["price"].replace("\xa0", "").replace("€", " €")
             url = card["url"]
             listing = [x, y, address, price, url]
             listings.append(listing)

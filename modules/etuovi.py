@@ -5,8 +5,9 @@ DETAIL_URL = "https://www.etuovi.com/api/v2/announcement/details"
 TARGET_URL = "https://www.etuovi.com/kohde/"
 URL = "https://www.etuovi.com/api/v2/announcements/search/listpage"
 
+
 def _transform_parameters(basic_parameters):
-    #transform maximum price
+    # transform maximum price
     maximum_price = basic_parameters["maximum_price"]
 
     # transform room count
@@ -21,7 +22,7 @@ def _transform_parameters(basic_parameters):
     rooms = []
     for room in basic_parameters["rooms"]:
         if room > len(translated_rooms):
-            if (translated_rooms[-1] in rooms):
+            if translated_rooms[-1] in rooms:
                 continue
         else:
             rooms.append(translated_rooms[room - 1])
@@ -106,7 +107,7 @@ def fetch_data(basic_parameters):
     data = response.json()
     total_count = data["countOfAllResults"]
     listings = []
-    print (f"-- Etuovi --")
+    print(f"-- Etuovi --")
     for idx, card in enumerate(data["announcements"]):
         print(f"+ {idx+1}/{total_count}")
 
