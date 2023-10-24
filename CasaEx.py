@@ -42,7 +42,6 @@ def CasaEx():
     ]
 
     sources = []
-
     # we only use modules that actually have fetch_data function
     for module in modules:
         if hasattr(module, "fetch_data"): 
